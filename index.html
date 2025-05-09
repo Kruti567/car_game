@@ -130,6 +130,19 @@
     <canvas id="renderCanvas"></canvas>
     
     <!-- Babylon.js Libraries -->
+    <!-- Ammo.js physics engine must be loaded first -->
+    <script>
+        // Initialize Ammo.js properly before loading other scripts
+        var ammoInitialized = false;
+        var ammoReadyPromise = new Promise((resolve) => {
+            window.addEventListener('ammo-ready', function() {
+                ammoInitialized = true;
+                console.log('Ammo.js initialized successfully');
+                resolve();
+            });
+        });
+    </script>
+    <script src="https://cdn.babylonjs.com/ammo.js"></script>
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
     <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>

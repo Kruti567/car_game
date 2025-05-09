@@ -8,6 +8,12 @@ async function createGameScene(engine, canvas) {
     // Set the scene's clear color to a dark blue/purple gradient to match the futuristic look
     scene.clearColor = new BABYLON.Color4(0.05, 0.05, 0.15, 1);
     
+    // Wait for Ammo.js to be initialized before enabling physics
+    if (!ammoInitialized) {
+        console.log('Waiting for Ammo.js to initialize in graphics.js...');
+        await ammoReadyPromise;
+    }
+    
     // Enable physics
     scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), new BABYLON.AmmoJSPlugin());
     
